@@ -2,19 +2,24 @@ from pathlib import Path
 from decouple import config
 
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# BUILD PATHS INSIDE THE PROJECT LIKE THIS: BASE_DIR / 'SUBDIR'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# The secret is key is in .env folder to not include it in git
+# THE SECRET KEY IS PLACED IN .ENV FOLDER TO EXCLUDE IT FROM GIT
 SECRET_KEY = config('DJANGO_SECRET_KEY')
 DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = []
 
-# Custom User Authentification model
+# CUSTOM USER AUTHENTIFICATION MODEL
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
-# Application definition
+# CUSTOM USER AUTHENTIFICATION BACKEND
+AUTHENTICATION_BACKENDS = [
+    'accounts.backends.EmailBackend',
+]
+
+# APPLICATION DEFINITION
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -55,7 +60,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'play_pal_project.wsgi.application'
 
-# Database
+# DATABASE
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -64,32 +69,23 @@ DATABASES = {
 }
 
 
-# Password validation
+# PASSWORD VALIDATION
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'accounts.validators.CustomComplexityValidator', 'OPTIONS': {'min_length': 10}},
 ]
 
 
-# Internationalization
+# INTERNATIONALIZATION
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
+# STATIC FILES (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
 
-# Default primary key field type
+# DEFAULT PRIMARY KEY FIELD TYPE
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
