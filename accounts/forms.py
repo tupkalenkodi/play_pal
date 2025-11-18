@@ -1,11 +1,7 @@
 from django import forms
 from .models import CustomUser
 from django.core.exceptions import ValidationError
-from .validators import CustomComplexityValidator
-
-
-# CUSTOM PASSWORD VALIDATOR FROM validators.py
-Validator = CustomComplexityValidator(min_length=10)
+from django.contrib.auth.password_validation import validate_password
 
 
 # REGISTER FORM
@@ -13,7 +9,7 @@ class UserRegistrationForm(forms.ModelForm):
     password1 = forms.CharField(
         label='Password',
         widget=forms.PasswordInput(attrs={'class': 'form-control',
-                                          'placeholder': 'Enter Password'},)
+                                          'placeholder': 'Enter Password'}, )
     )
     password2 = forms.CharField(
         label='Confirm Password',
@@ -43,7 +39,7 @@ class UserRegistrationForm(forms.ModelForm):
             raise ValidationError("Passwords don't match")
 
         # PASSWORD STRENGTH VALIDATION
-        Validator.validate(password1)
+        validate_password(password1, user=None)
 
         return password1
 
@@ -118,7 +114,7 @@ class UserProfileForm(forms.ModelForm):
         if password1 or password2:
             if password1 != password2:
                 raise ValidationError("Passwords don't match")
-            Validator.validate(password1)
+            validate_password(password1, user=None)
 
         return password2
 

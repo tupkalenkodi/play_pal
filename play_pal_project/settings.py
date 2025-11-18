@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'play_pal.apps.PlayPalConfig',
+    'play_pal',
     'accounts',
 ]
 
@@ -71,8 +71,6 @@ DATABASES = {
 
 # PASSWORD VALIDATION
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
     {'NAME': 'accounts.validators.CustomComplexityValidator', 'OPTIONS': {'min_length': 10}},
 ]
 
