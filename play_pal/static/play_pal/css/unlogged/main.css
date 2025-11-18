@@ -1,0 +1,189 @@
+body{
+    padding-top: 35vh;
+    font-family: Calibri, sans-serif;
+    font-size: 16px;
+    background: black;
+    color: white;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    margin-left: 1vw;
+    width: 80vw;
+}
+
+h2 {
+    margin-top: 2rem;
+}
+
+
+p{
+    margin-top: 1rem;
+    margin-left: 1vw;
+    width: 80vw;
+    font-size: 1.125rem;
+}
+
+
+a {
+    text-decoration: none;
+    font-weight: bolder;
+    color: white;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+i {
+    z-index: 998;
+    margin-left: 1vw;
+    scale: 200%;
+}
+
+
+
+.center-wrapper {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.nav_bar {
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 15vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #222222;
+    background: black;
+}
+
+.nav_bar a {
+    font-family: "Dubai Light", serif;
+    font-size: 1.1875rem;
+    color: white;
+}
+
+
+.arrow {
+    font-size: 1.1875rem;
+}
+
+
+.social-media-icons {
+    margin-left: 0.5vw;
+    width: 96px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.question {
+    cursor: pointer;
+}
+
+.answer {
+    margin-left: 6vh;
+    width: 80vw;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+#logo {
+    position: absolute;
+    left: calc(1vw + 0.5vw);
+    top: calc(7.5vh - 32px + 16px);
+}
+
+#homepage {
+    position: absolute;
+    left: calc(1vw + 0.5vw + 32px + 2vw);
+}
+
+#faq {
+    position: absolute;
+    left: calc(1vw + 0.5vw + 82px + 30vw + 32px + 2vw);
+}
+
+#developers {
+    position: absolute;
+    left: calc(1vw + 0.5vw + 82px + 30vw + 33px + 2vw + 32px + 2vw);
+}
+
+#login {
+    position: absolute;
+    right: calc(2vw + 94px + 1vw);
+}
+
+#register {
+    position: absolute;
+    right: 1vw;
+}
+
+#Sign-up_container{
+    width: 5.625rem;
+    border: 2px solid white;
+    text-align: center;
+}
+
+
+/* MOBILE DESIGN */
+#menu {
+    position: absolute;
+    right: 1vw;
+}
+
+#button_menu {
+    font-family: "Dubai Light", serif;
+    font-size: 1.1875rem;
+    font-weight: bolder;
+    color: white;
+    background-color: black;
+    border: none;
+}
+
+#button_menu:hover {
+   text-decoration: underline;
+}
+
+
+#mobile_navbar {
+    z-index: 999;
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: calc(15vh + 2px);
+    left: 0;
+}
+
+#mobile_navbar ul {
+    margin-top: calc(20vh + 20px);
+}
+
+#mobile_navbar li {
+    padding: 15px;
+    position: relative;
+}
+
+#mobile_navbar a {
+    font-family: "Dubai Light", serif;
+    font-size: 1.1875rem;
+    color: white;
+}
+
+#mobile_navbar a:hover {
+    text-decoration: underline;
+}
