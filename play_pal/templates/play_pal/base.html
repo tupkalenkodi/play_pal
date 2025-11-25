@@ -37,8 +37,8 @@
                     <span class="user-greeting">
                         Hello, {{ user.get_full_name|default:user.email }}
                     </span>
-                    <a href="{% url 'profile' %}" class="btn-profile">Profile</a>
-                    <form method="post" action="{% url 'logout' %}" class="logout-form">
+                    <!-- <a href="{#% url 'profile' %#}" class="btn-profile">Profile</a> -->
+                    <form method="post" action="{% url 'signout' %}" class="logout-form">
                         {% csrf_token %}
                         <button type="submit" class="btn-logout">Logout</button>
                     </form>
@@ -64,15 +64,15 @@
             {% if user.is_authenticated %}
                 <hr>
                 <span class="mobile-greeting">Hello, {{ user.get_full_name|default:user.email }}</span>
-                <a href="{% url 'profile' %}">Profile</a>
-                <form method="post" action="{% url 'logout' %}">
+                <!-- <a href="{#% url 'profile' %#}">Profile</a> -->
+                <form method="post" action="{% url 'signout' %}">
                     {% csrf_token %}
-                    <button type="submit" class="btn-logout-mobile">Logout</button>
+                    <button type="submit" class="btn-logout-mobile">Sign Out</button>
                 </form>
             {% else %}
                 <hr>
-                <a href="{% url 'signin' %}">Sign in ↗</a>
-                <a href="{% url 'signup' %}">Sign up ↗</a>
+                <a href="{% url 'signin' %}">Sign In ↗</a>
+                <a href="{% url 'signup' %}">Sign Up ↗</a>
             {% endif %}
         </div>
     </header>
@@ -85,10 +85,6 @@
     <footer>
         <div class="footer-content">
             <p>&copy; 2025 PlayPal.</p>
-            <div class="footer-links">
-                <a href="{% url 'faq' %}">FAQ</a>
-                <a href="{% url 'developer' %}">Developer</a>
-            </div>
         </div>
     </footer>
 
