@@ -1,0 +1,72 @@
+{% extends 'play_pal/base.html' %}
+{% load static %}
+
+{% block title %}Homepage - PlayPal{% endblock %}
+
+{% block body %}
+<section class="hero">
+    <div class="hero-inner container">
+        {% if user.is_authenticated %}
+            <div class="hero-text-only">
+                <h1>Welcome back, {{ user.get_full_name|default:user.username }}!</h1>
+                <p>Ready to discover your next favorite game?</p>
+                <a href="#recommendations" class="btn-primary">Get Recommendations</a>
+            </div>
+        {% else %}
+            <!-- Side-by-side layout: text left, video right (desktop) -->
+            <div class="hero-split">
+                <div class="hero-text">
+                    <h1>Welcome to PlayPal</h1>
+                    <p>Your personal game recommendation assistant</p>
+                    <div class="hero-actions">
+                        <a href="{% url 'signup' %}" class="btn-primary">Get Started</a>
+                        <a href="{% url 'signin' %}" class="btn-secondary">Sign In</a>
+                    </div>
+                </div>
+
+                <!-- TODO: finish -->
+                <div class="hero-video-wrapper">
+                    <video autoplay muted loop playsinline class="hero-video">
+                        <source src="{% static 'play_pal/videos/welcoming.mp4' %}" type="video/mp4">
+                        Your browser does not support video.
+                    </video>
+                    <div class="hero-overlay"></div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <h2>Why Choose PlayPal?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎮</div>
+                <h3>Personalized Recommendations</h3>
+                <p>Get game suggestions tailored to your preferences and playing style.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⭐</div>
+                <h3>Rate & Review</h3>
+                <p>Share your gaming experiences and help others discover great games.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>Discover Hidden Gems</h3>
+                <p>Find amazing games you might have missed based on your taste.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if user.is_authenticated %}
+<section class="recommendations" id="recommendations">
+    <div class="container">
+        <h2>Recommended for You</h2>
+        <p class="coming-soon">Your personalized recommendations will appear here soon!</p>
+        <!-- This will be populated with actual recommendations later -->
+    </div>
+</section>
+{% endif %}
+{% endblock %}
