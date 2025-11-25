@@ -12,12 +12,10 @@ DEBUG = config('DEBUG')
 ALLOWED_HOSTS = []
 
 # CUSTOM USER AUTHENTIFICATION MODEL
-AUTH_USER_MODEL = 'accounts.CustomUser'
+AUTH_USER_MODEL = 'users.User'
 
 # CUSTOM USER AUTHENTIFICATION BACKEND
-AUTHENTICATION_BACKENDS = [
-    'accounts.backends.EmailBackend',
-]
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # APPLICATION DEFINITION
 INSTALLED_APPS = [
@@ -28,7 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'play_pal',
-    'accounts',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -71,7 +69,11 @@ DATABASES = {
 
 # PASSWORD VALIDATION
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'accounts.validators.CustomComplexityValidator', 'OPTIONS': {'min_length': 10}},
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+     'OPTIONS': {'min_length': 10}},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 

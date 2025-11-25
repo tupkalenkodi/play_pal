@@ -1,0 +1,40 @@
+{% extends 'users/base.html' %}
+
+{% block title %}Sign In - PLayPal{% endblock %}
+
+{% block body %}
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="center-wrapper">
+            <h1>Welcome back</h1>
+        </div>
+
+        <label for="email"></label>
+        <div class="center-wrapper">
+            <input type="text" name="email" placeholder="Email address" id="email">
+        </div>
+
+        <label for="password"></label>
+        <div class="center-wrapper">
+            <input type="password" name="password" placeholder="Password" id="password">
+        </div>
+
+        <div class="center-wrapper">
+            <button type="submit" class="reg-log-button">Sign in</button>
+        </div>
+
+        <div class="center-wrapper">
+            <p>
+                Don't have an account? <a href="{% url 'signup' %}">Sign up</a>
+                <span class="arrow">&#x2197;</span>
+            </p>
+        </div>
+
+    </form>
+
+    {% if flag == True %}
+    <div class="error-messages">{{ error_message }}</div>
+    {% endif %}
+
+{% endblock %}
