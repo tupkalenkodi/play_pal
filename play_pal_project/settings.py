@@ -11,6 +11,10 @@ DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = []
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 # CUSTOM USER AUTHENTIFICATION MODEL
 AUTH_USER_MODEL = 'users.User'
 
@@ -89,3 +93,7 @@ STATIC_URL = 'static/'
 
 # DEFAULT PRIMARY KEY FIELD TYPE
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = 'signin_form'
+LOGIN_REDIRECT_URL = 'homepage'
+LOGOUT_REDIRECT_URL = 'homepage'

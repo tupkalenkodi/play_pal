@@ -20,7 +20,7 @@
 
         <div class="center-wrapper">
             <p>
-                Already have an account? <a href="{% url 'signin' %}">Sign in</a>
+                Already have an account? <a href="{% url 'signin_form' %}">Sign in</a>
                 <span class="arrow">&#x2197;</span>
             </p>
         </div>
@@ -30,15 +30,15 @@
     {% if form.errors %}
         <div class="error-messages">
             {% for email_errors in form.email.errors %}
-                <li>{{ email_errors}}</li>
+                <li>{{ email_errors }}</li>
             {% endfor %}
 
             {% for password1_errors in form.password1.errors %}
-                <li>{{ password1_errors}}</li>
+                <li>{{ password1_errors }}</li>
             {% endfor %}
 
             {% for password_errors in form.password2.errors %}
-                <li>{{ password_errors}}</li>
+                <li>{{ password_errors }}</li>
             {% endfor %}
         </div>
     {% endif %}

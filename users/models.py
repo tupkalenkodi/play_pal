@@ -22,29 +22,24 @@ class CustomUserManager(BaseUserManager):
 
 class User(AbstractUser):
     email = models.EmailField(unique=True, verbose_name="Email Address")
-    username = models.CharField(max_length=150, blank=True, null=True)
+    username = None
 
     # Use custom manager
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []  # Remove 'username' from required fields
-
-    def __str__(self):
-        return self.email
+    REQUIRED_FIELDS = []
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    first_name = models.CharField(max_length=150, blank=False, null=False, default="Test")
+    last_name = models.CharField(max_length=150, blank=False, null=False, default="Test")
     bio = models.TextField(blank=True, null=True)
-    # avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
-    date_of_birth = models.DateField(blank=True, null=True)
-    location = models.CharField(max_length=100, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    age = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
-        return f"{self.user.email}'s Profile"
+        return f"{self.first_name} {self.last_name}"
 
 
 # Signals to automatically create/update profile
@@ -56,4 +51,6 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+    if hasattr(instance, 'profile'):
+        instance.profile.save()
+

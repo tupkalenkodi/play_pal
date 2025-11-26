@@ -30,26 +30,14 @@
                 <button class="nav-btn" data-section="developer-section">Developer</button>
             </div>
 
-            <!-- Auth buttons (desktop & mobile menu) -->
+            <!-- Auth buttons -->
             <div class="nav-actions">
-                {% if user.is_authenticated %}
-                    <span class="user-greeting">
-                        Hello, {{ user.get_full_name|default:user.email }}
-                    </span>
-                    <form method="post" action="{% url 'signout' %}" class="logout-form">
-                        {% csrf_token %}
-                        <button type="submit" class="btn-logout">Logout</button>
-                    </form>
-                {% else %}
-                    <a href="{% url 'signin' %}" class="btn-signin">
-                        Sign in
-                        <span class="arrow">↗</span>
-                    </a>
-                    <a href="{% url 'signup' %}" class="btn-signup">
-                        Sign up
-                        <span class="arrow">↗</span>
-                    </a>
-                {% endif %}
+                <a href="{% url 'signin_form' %}" class="btn-signin">
+                    Sign In ↗
+                </a>
+                <a href="{% url 'signup_form' %}" class="btn-signup">
+                    Sign Up ↗
+                </a>
             </div>
         </nav>
 
@@ -58,19 +46,9 @@
             <button class="mobile-nav-btn" data-section="home-section">Homepage</button>
             <button class="mobile-nav-btn" data-section="faq-section">FAQ</button>
             <button class="mobile-nav-btn" data-section="developer-section">Developer</button>
-
-            {% if user.is_authenticated %}
-                <hr>
-                <span class="mobile-greeting">Hello, {{ user.get_full_name|default:user.email }}</span>
-                <form method="post" action="{% url 'signout' %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn-logout-mobile">Sign Out</button>
-                </form>
-            {% else %}
-                <hr>
-                <a href="{% url 'signin' %}">Sign In ↗</a>
-                <a href="{% url 'signup' %}">Sign Up ↗</a>
-            {% endif %}
+            <hr>
+            <a href="{% url 'signin_form' %}">Sign In ↗</a>
+            <a href="{% url 'signup_form' %}">Sign Up ↗</a>
         </div>
     </header>
 
@@ -79,32 +57,24 @@
         <section id="home-section" class="page-section active">
             <div class="hero">
                 <div class="hero-inner container">
-                    {% if user.is_authenticated %}
-                        <div class="hero-text-only">
-                            <h1>Welcome back, {{ user.get_full_name|default:user.username }}!</h1>
-                            <p>Ready to discover your next favorite game?</p>
-                            <a href="#recommendations" class="btn-primary">Get Recommendations</a>
-                        </div>
-                    {% else %}
-                        <div class="hero-split">
-                            <div class="hero-text">
-                                <h1>Welcome to PlayPal</h1>
-                                <p>Your personal outdoor activity partner recommendation assistant</p>
-                                <div class="hero-actions">
-                                    <a href="{% url 'signup' %}" class="btn-primary">Get Started</a>
-                                    <a href="{% url 'signin' %}" class="btn-secondary">Sign In</a>
-                                </div>
+                    <div class="hero-split">
+                        <div class="hero-text">
+                            <h1>Welcome to PlayPal</h1>
+                            <p>Your personal outdoor activity partner recommendation assistant</p>
+                            <div class="hero-actions">
+                                <a href="{% url 'signup_form' %}" class="btn-primary">Get Started</a>
+                                <a href="{% url 'signin_form' %}" class="btn-secondary">Sign In</a>
                             </div>
+                        </div>
 
-                            <div class="hero-video-wrapper">
-                                <video autoplay muted loop playsinline class="hero-video">
-                                    <source src="{% static 'play_pal/videos/welcoming.mp4' %}" type="video/mp4">
-                                    Your browser does not support video.
-                                </video>
-                                <div class="hero-overlay"></div>
-                            </div>
+                        <div class="hero-video-wrapper">
+                            <video autoplay muted loop playsinline class="hero-video">
+                                <source src="{% static 'play_pal/videos/welcoming.mp4' %}" type="video/mp4">
+                                Your browser does not support video.
+                            </video>
+                            <div class="hero-overlay"></div>
                         </div>
-                    {% endif %}
+                    </div>
                 </div>
             </div>
 
@@ -188,3 +158,5 @@
 
 </body>
 </html>
+
+<!-- TODO: CLEAN! (main.css as well) -->

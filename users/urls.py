@@ -2,8 +2,13 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('signup', views.signup_user, name="signup"),
-    path('signin', views.signin_user, name="signin"),
-    path('signout', views.signout_user, name="signout"),
-]
+    # Authentication
+    path('signup_form', views.signup_user, name="signup_form"),
+    path('signin_form', views.signin_user, name="signin_form"),
 
+    # Profile management
+    path('profile/', views.manage_profile, name='profile_form'),
+
+    # Password management
+    path('password/change/', views.change_password, name='change_password'),
+]

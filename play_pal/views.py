@@ -1,5 +1,10 @@
 from django.shortcuts import render
 
 
-def index(request):
-    return render(request, 'play_pal/index.html')
+def homepage(request):
+    if not request.user.is_authenticated:
+        template = 'play_pal/index.html'
+
+    else:
+        template = 'users/profile_form.html'
+    return render(request, template_name=template)
