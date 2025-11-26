@@ -1,0 +1,190 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'play_pal/css/main.css' %}">
+    <link rel="icon" href="{% static 'play_pal/images/favicon/favicon_white.svg' %}">
+
+    <title>Welcoming Page - PlayPal</title>
+</head>
+<body>
+    <header>
+        <nav class="nav-bar">
+            <button class="logo nav-btn" data-section="home-section">
+                <img src="{% static 'play_pal/images/favicon/favicon_white.svg' %}" alt="PlayPal Logo">
+            </button>
+
+            <!-- Hamburger menu for mobile -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Desktop navigation -->
+            <div class="nav-links">
+                <button class="nav-btn" data-section="faq-section">FAQ</button>
+                <button class="nav-btn" data-section="developer-section">Developer</button>
+            </div>
+
+            <!-- Auth buttons (desktop & mobile menu) -->
+            <div class="nav-actions">
+                {% if user.is_authenticated %}
+                    <span class="user-greeting">
+                        Hello, {{ user.get_full_name|default:user.email }}
+                    </span>
+                    <form method="post" action="{% url 'signout' %}" class="logout-form">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-logout">Logout</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'signin' %}" class="btn-signin">
+                        Sign in
+                        <span class="arrow">↗</span>
+                    </a>
+                    <a href="{% url 'signup' %}" class="btn-signup">
+                        Sign up
+                        <span class="arrow">↗</span>
+                    </a>
+                {% endif %}
+            </div>
+        </nav>
+
+        <!-- Mobile menu (hidden by default) -->
+        <div class="mobile-menu" id="mobileMenu">
+            <button class="mobile-nav-btn" data-section="home-section">Homepage</button>
+            <button class="mobile-nav-btn" data-section="faq-section">FAQ</button>
+            <button class="mobile-nav-btn" data-section="developer-section">Developer</button>
+
+            {% if user.is_authenticated %}
+                <hr>
+                <span class="mobile-greeting">Hello, {{ user.get_full_name|default:user.email }}</span>
+                <form method="post" action="{% url 'signout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-logout-mobile">Sign Out</button>
+                </form>
+            {% else %}
+                <hr>
+                <a href="{% url 'signin' %}">Sign In ↗</a>
+                <a href="{% url 'signup' %}">Sign Up ↗</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="home-section" class="page-section active">
+            <div class="hero">
+                <div class="hero-inner container">
+                    {% if user.is_authenticated %}
+                        <div class="hero-text-only">
+                            <h1>Welcome back, {{ user.get_full_name|default:user.username }}!</h1>
+                            <p>Ready to discover your next favorite game?</p>
+                            <a href="#recommendations" class="btn-primary">Get Recommendations</a>
+                        </div>
+                    {% else %}
+                        <div class="hero-split">
+                            <div class="hero-text">
+                                <h1>Welcome to PlayPal</h1>
+                                <p>Your personal outdoor activity partner recommendation assistant</p>
+                                <div class="hero-actions">
+                                    <a href="{% url 'signup' %}" class="btn-primary">Get Started</a>
+                                    <a href="{% url 'signin' %}" class="btn-secondary">Sign In</a>
+                                </div>
+                            </div>
+
+                            <div class="hero-video-wrapper">
+                                <video autoplay muted loop playsinline class="hero-video">
+                                    <source src="{% static 'play_pal/videos/welcoming.mp4' %}" type="video/mp4">
+                                    Your browser does not support video.
+                                </video>
+                                <div class="hero-overlay"></div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="container">
+                    <h2>Why Choose PlayPal?</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🎮</div>
+                            <h3>Personalized Recommendations</h3>
+                            <p>Get partner suggestions tailored to your personality and activity metrics.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⭐</div>
+                            <h3>Rate & Review</h3>
+                            <p>Share your experience and refine your recommendations.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔍</div>
+                            <h3>Discover Hidden Gems</h3>
+                            <p>Connect with like-minded and like-active individuals.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq-section" class="page-section">
+            <div class="faq-content">
+                <div class="container">
+                    <h1>Frequently Asked Questions</h1>
+
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <h2 class="faq-question" onclick="toggleFAQ(this)">
+                                What should I do after registration and login?
+                                <span class="faq-icon">+</span>
+                            </h2>
+                            <div class="faq-answer">
+                                <p>After registration and login, follow these steps:</p>
+                                <ol>
+                                    <li>Complete your profile with your activity preferences</li>
+                                    <li>Browse recommended partners based on your interests</li>
+                                    <li>Connect and start your outdoor adventures!</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DEVELOPER SECTION -->
+        <section id="developer-section" class="page-section">
+            <div class="developer-content">
+                <div class="container">
+                    <div class="developer-card">
+                        <h2>Dmytro Tupkalenko</h2>
+                        <p>UP FAMNIT first-year student of Data Science</p>
+
+                        <div class="social-links">
+                            <a href="https://github.com/tupkalenkodi" target="_blank" rel="noopener" class="social-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 PlayPal.</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'play_pal/javascript/main.js' %}" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</body>
+</html>

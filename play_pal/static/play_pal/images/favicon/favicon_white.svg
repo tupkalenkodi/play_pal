@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="240" height="80" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg" aria-label="PlayPal Logo">
+  <!-- Optional subtle background glow for dark mode -->
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Curved connection line (orange) -->
+  <path d="M30 60 Q60 20, 100 40 Q140 60, 170 25"
+        stroke="#FF6B00"
+        stroke-width="7"
+        fill="none"
+        stroke-linecap="round"
+        filter="url(#glow)"/>
+
+  <!-- Two "players" (circles) -->
+  <circle cx="30" cy="60" r="10" fill="#FF6B00"/>
+  <circle cx="170" cy="25" r="10" fill="#FF6B00"/>
+
+  <!-- PlayPal text — bold, modern, responsive to theme -->
+  <text x="190" y="50"
+        font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="36"
+        font-weight="800"
+        fill="white"
+        text-anchor="end">
+    PlayPal
+  </text>
+</svg>

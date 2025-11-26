@@ -91,7 +91,7 @@ header {
 }
 
 .logo img {
-    height: 32px;
+    height: 56px;
     width: auto;
 }
 
@@ -765,5 +765,89 @@ footer {
 
     .hero-inner {
         padding: 0 1.5rem;
+    }
+}
+
+
+/* ============================================
+   SINGLE PAGE APP STYLES
+   Add these to your existing main.css
+   ============================================ */
+
+/* Hide all sections by default, show only active */
+.page-section {
+    display: none;
+}
+
+.page-section.active {
+    display: block;
+}
+
+/* Navigation button styles */
+.nav-btn {
+    background: transparent;
+    border: none;
+    font-family: "Dubai Light", Calibri, sans-serif;
+    font-size: 1.1875rem;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.nav-btn:hover {
+    text-decoration: underline;
+    color: #ffffff;
+}
+
+.logo.nav-btn {
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.logo.nav-btn:hover {
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+/* Mobile navigation buttons */
+.mobile-nav-btn {
+    background: transparent;
+    border: none;
+    font-family: "Dubai Light", Calibri, sans-serif;
+    font-size: 1.1875rem;
+    padding: 1rem 1.5vw;
+    color: #ffffff;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.mobile-nav-btn:hover {
+    text-decoration: underline;
+}
+
+/* Ensure sections take full width */
+.page-section {
+    width: 100%;
+}
+
+/* Smooth transitions between sections */
+.page-section {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
